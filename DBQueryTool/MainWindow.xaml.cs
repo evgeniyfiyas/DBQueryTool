@@ -1,21 +1,11 @@
 ﻿using ClosedXML.Report;
+using DBQueryTool.Core.Formatters;
 using DBQueryTool.Models.DataProviders;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using DBQueryTool.Views.Renderers;
+using Microsoft.Win32;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace DBQueryTool
 {
@@ -24,6 +14,10 @@ namespace DBQueryTool
     /// </summary>
     public partial class MainWindow : Window
     {
+        // TODO: Rework this global variables
+        private DataTable queried;
+        private string templateFilePath;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -51,16 +45,55 @@ namespace DBQueryTool
 
         private void QueryGoButton_Click(object sender, RoutedEventArgs e)
         {
+            var reader = MSAccessDataProvider.Query(QueryTextBox.Text);
+
+            if (reader != null)
+            {
+                // If query was ok loading results to datatable
+                queried = new DataTable();
+                queried.Load(reader);
+                MessageBox.Show("Query OK", "DBQueryTool", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         private void LoadTemplateButton_Click(object sender, RoutedEventArgs e)
         {
-
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "xlsx files (*.xlsx)|*.xlsx";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // TODO: Handle possible exception when file is removed after loading BUT before exporting to excel
+                templateFilePath = openFileDialog.FileName;
+                MessageBox.Show("Template loaded", "DBQueryTool", MessageBoxButton.OK, MessageBoxImage.Information);
+                ExportToXlsButton.IsEnabled = true;
+            }
         }
 
         private void ExportToXlsButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            MSAccessFormatter formatter = new MSAccessFormatter();
+            var formatted = formatter.Format(queried);
+
+            var template = new XLTemplate(templateFilePath);
+            template.AddVariable("Users", formatted);
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Microsoft Excel Spreadsheet (*.xlsx)|*.xlsx";
+            saveFileDialog.DefaultExt = "xlsx";
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                string outputFilePath = saveFileDialog.FileName;
+
+                ExcelRenderer renderer = new ExcelRenderer();
+                renderer.Render(formatted, outputFilePath, template);
+
+                MessageBox.Show("Report generated", "DBQueryTool", MessageBoxButton.OK, MessageBoxImage.Information);
+            }            
+        }
+
+        private void QueryTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            QueryGoButton.IsEnabled = QueryTextBox.Text.Length > 0 ? true : false;
         }
     }
 }
