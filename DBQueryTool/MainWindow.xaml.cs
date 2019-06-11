@@ -75,6 +75,8 @@ namespace DBQueryTool
             var formatted = formatter.Format(queried);
 
             var template = new XLTemplate(templateFilePath);
+            
+            // TODO: Remove hardcoded values/refactor
             template.AddVariable("Users", formatted);
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
