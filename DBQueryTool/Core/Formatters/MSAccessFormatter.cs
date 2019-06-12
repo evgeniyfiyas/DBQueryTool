@@ -14,7 +14,7 @@ namespace DBQueryTool.Core.Formatters
 
             foreach (var row in formattable.AsEnumerable())
             {
-                Hashtable item = new Hashtable();
+                var item = new Hashtable();
 
                 for (int i = 0; i < formattable.Columns.Count; i++)
                 {

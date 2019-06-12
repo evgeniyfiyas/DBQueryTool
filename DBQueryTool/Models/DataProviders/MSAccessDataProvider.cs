@@ -17,6 +17,7 @@ namespace DBQueryTool.Models.DataProviders
         {
             try
             {
+                // using?
                 Connection = new OleDbConnection(connectionString);
                 Connection.Open();
             }
@@ -31,11 +32,11 @@ namespace DBQueryTool.Models.DataProviders
         {
             try
             {
-                OleDbCommand cmd = new OleDbCommand(query, Connection);
+                var cmd = new OleDbCommand(query, Connection);
 
                 // Allowing only Select queries
-                Regex regex = new Regex(@"(?i)(SELECT).*");
-                Match match = regex.Match(query);
+                var regex = new Regex(@"(?i)(SELECT).*");
+                var match = regex.Match(query);
                 if (match.Success)
                 {
                     return cmd.ExecuteReader();
