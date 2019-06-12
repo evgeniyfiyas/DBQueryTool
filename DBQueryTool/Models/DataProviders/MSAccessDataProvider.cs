@@ -6,57 +6,51 @@ using System.Threading.Tasks;
 using System.Data.OleDb;
 using System.Text.RegularExpressions;
 using System.Windows;
+using NLog;
+using System.Data;
 
 namespace DBQueryTool.Models.DataProviders
 {
-    public static class MSAccessDataProvider
+    public class MSAccessDataProvider
     {
-        public static OleDbConnection Connection { get; private set; }
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private string _queryString;
 
-        public static bool Connect(string connectionString)
+        public MSAccessDataProvider(string queryString)
         {
-            try
-            {
-                // using?
-                Connection = new OleDbConnection(connectionString);
-                Connection.Open();
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-            return true;
+            _queryString = queryString;
         }
 
-        public static OleDbDataReader Query(string query)
+        public bool TestConnection()
+        {
+            return Query("select 1") != null;
+        }
+
+
+        public DataTable Query(string query)
         {
             try
             {
-                var cmd = new OleDbCommand(query, Connection);
+                using (var connection = new OleDbConnection(_queryString))
+                {
+                    connection.Open();
+                    logger.Info("Connected to database using connection string: " + _queryString);
 
-                // Allowing only Select queries
-                var regex = new Regex(@"(?i)(SELECT).*");
-                var match = regex.Match(query);
-                if (match.Success)
-                {
-                    return cmd.ExecuteReader();
-                }
-                else
-                {
-                    throw new Exception();
+                    // TODO: Move this to validator logic
+                    // var regex = new Regex(@"(?i)(SELECT).*");
+                    // var match = regex.Match(query);
+
+                    var cmd = new OleDbCommand(query, connection);
+                    var data = new DataTable();
+                    data.Load(cmd.ExecuteReader());
+                    return data;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Invalid query", "DBQueryTool", MessageBoxButton.OK, MessageBoxImage.Error);
+                logger.Error("Can't connect to database using provided connection string. \n" + ex.StackTrace);
                 return null;
             }
-
-        }
-        public static void Disconnect()
-        {
-            // TODO: Implement disconnect button and bound it to this method
-            Connection.Close();
         }
     }
 }

@@ -3,8 +3,10 @@ using DBQueryTool.Core.Formatters;
 using DBQueryTool.Models.DataProviders;
 using DBQueryTool.Views.Renderers;
 using Microsoft.Win32;
+using NLog;
 using System;
 using System.Data;
+using System.Data.OleDb;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -19,6 +21,7 @@ namespace DBQueryTool
 
         private DataTable _queried;
         private string _templateFilePath;
+        private MSAccessDataProvider _dataProvider;
 
         public MainWindow()
         {
@@ -27,7 +30,9 @@ namespace DBQueryTool
 
         private void ConnectionTestButton_Click(object sender, RoutedEventArgs e)
         {
-            if (MSAccessDataProvider.Connect(ConnectionStringTextBox.Text))
+            var connectionString = ConnectionStringTextBox.Text;
+            _dataProvider = new MSAccessDataProvider(connectionString);
+            if (_dataProvider.TestConnection())
             {
                 MessageBox.Show("Connected.", "DBQueryTool: Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 ChangeControlsState(false, false, true, false, true, false);
@@ -45,15 +50,10 @@ namespace DBQueryTool
 
         private void QueryGoButton_Click(object sender, RoutedEventArgs e)
         {
-            var reader = MSAccessDataProvider.Query(QueryTextBox.Text);
+            _queried = _dataProvider.Query(QueryTextBox.Text);
 
-            if (reader != null)
-            {
-                // If query was ok loading results to datatable
-                _queried = new DataTable();
-                _queried.Load(reader);
-                MessageBox.Show("Query OK", "DBQueryTool", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
+            logger.Info("Database query success");
+            MessageBox.Show("Query OK", "DBQueryTool", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void LoadTemplateButton_Click(object sender, RoutedEventArgs e)
@@ -64,7 +64,7 @@ namespace DBQueryTool
             };
             if (openFileDialog.ShowDialog() == true)
             {
-                // TODO: Handle possible exception when file is removed after loading BUT before exporting to excel
+                logger.Info("XLSX template loaded successfully.");
                 _templateFilePath = openFileDialog.FileName;
                 MessageBox.Show("Template loaded", "DBQueryTool", MessageBoxButton.OK, MessageBoxImage.Information);
                 ExportToXlsButton.IsEnabled = true;
@@ -91,7 +91,7 @@ namespace DBQueryTool
                 string outputFilePath = saveFileDialog.FileName;
 
                 var renderer = new ExcelRenderer();
-                renderer.Render(formatted, outputFilePath, template);
+                renderer.Render(outputFilePath, template);
 
                 MessageBox.Show("Report generated", "DBQueryTool", MessageBoxButton.OK, MessageBoxImage.Information);
             }

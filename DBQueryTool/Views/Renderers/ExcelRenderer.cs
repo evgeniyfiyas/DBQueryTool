@@ -8,7 +8,7 @@ namespace DBQueryTool.Views.Renderers
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public void Render(List<object> renderable, string outputFile, XLTemplate template)
+        public void Render(string outputFile, XLTemplate template)
         {
             template.Generate();
             template.SaveAs(outputFile);
