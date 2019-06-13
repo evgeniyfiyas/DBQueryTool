@@ -6,6 +6,7 @@ using DBQueryTool.Views.Renderers;
 using Microsoft.Win32;
 using NLog;
 using System.Data;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -97,8 +98,10 @@ namespace DBQueryTool
         }
 
         private void QueryTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            QueryGoButton.IsEnabled = QueryTextBox.Text.Length > 0;
+        { 
+            var regex = new Regex(@"(?i)(SELECT).*");
+            var match = regex.Match(QueryTextBox.Text);
+            QueryGoButton.IsEnabled = QueryTextBox.Text.Length > 0 && match.Success;
         }
 
         private void ChangeControlsState(bool connectionStringTextBoxIsEnabled, bool connectionTestButtonIsEnabled, bool queryTextBoxActiveIsEnabled, bool queryGoButtonIsEnabled, bool loadTemplateButtonIsEnabled, bool exportToExcelButtonIsEnabled)

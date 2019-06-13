@@ -2,6 +2,10 @@
 using System.Data.OleDb;
 using NLog;
 using System.Data;
+using System.ComponentModel;
+using System.Collections;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace DBQueryTool.Models.DataProviders
 {
@@ -29,10 +33,6 @@ namespace DBQueryTool.Models.DataProviders
                 {
                     connection.Open();
                     logger.Info("Connected to database using connection string: " + _queryString);
-
-                    // TODO: Move this to validator logic
-                    // var regex = new Regex(@"(?i)(SELECT).*");
-                    // var match = regex.Match(query);
 
                     var cmd = new OleDbCommand(query, connection);
                     var data = new DataTable();
