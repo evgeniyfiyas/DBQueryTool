@@ -98,6 +98,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Core\DependencyResolver.cs" />
+    <Compile Include="Models\DataProviders\IDataProvider.cs" />
     <Compile Include="Views\Renderers\ExcelRenderer.cs" />
     <Compile Include="Views\Renderers\IRenderer.cs" />
     <Compile Include="Views\Renderers\Wrappers\ExcelRendererWrapper.cs" />

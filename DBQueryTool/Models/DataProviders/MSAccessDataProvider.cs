@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace DBQueryTool.Models.DataProviders
 {
-    public class MsAccessDataProvider
+    public class MsAccessDataProvider : IDataProvider
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         private readonly string _queryString;
@@ -23,7 +23,6 @@ namespace DBQueryTool.Models.DataProviders
         {
             return Query("select 1") != null;
         }
-
 
         public DataTable Query(string query)
         {

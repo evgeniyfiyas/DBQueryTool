@@ -10,6 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using DBQueryTool.Views;
 using DBQueryTool.Views.Renderers.Wrappers;
+using StructureMap.Pipeline;
 
 namespace DBQueryTool
 {
@@ -80,22 +81,16 @@ namespace DBQueryTool
             // TODO: Remove hardcoded values/refactor
             template.AddVariable("Users", formatted);
             
-            SaveFileDialog saveFileDialog = new SaveFileDialog
+            var renderer = DependencyResolver.Container.GetInstance<IRenderer<ExcelRendererWrapper>>();
+            var renderable = DependencyResolver.Container.GetInstance<ExcelRendererWrapper>(new ExplicitArguments().Set(template));
+            
+            if (renderer.Render(renderable))
             {
-                Filter = "Microsoft Excel Spreadsheet (*.xlsx)|*.xlsx",
-                DefaultExt = "xlsx"
-            };
-            if (saveFileDialog.ShowDialog() == true)
-            {
-                string outputFilePath = saveFileDialog.FileName;
-
-                var renderer = new ExcelRenderer();
-                var renderable = new ExcelRendererWrapper(outputFilePath, template);
-
-                renderer.Render(renderable);
-
-                Logger.Info("Successfully exported xls file to: " + outputFilePath);
                 MessageBox.Show("Report generated", "DBQueryTool", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("There was a problem generating your report", "DBQueryTool", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

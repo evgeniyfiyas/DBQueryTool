@@ -8,6 +8,6 @@ namespace DBQueryTool.Views.Renderers
 {
     interface IRenderer<IRendererWrapper>
     {
-        void Render(IRendererWrapper renderable);
+        bool Render(IRendererWrapper renderable);
     }
 }
