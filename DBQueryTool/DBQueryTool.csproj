@@ -99,6 +99,9 @@
     </ApplicationDefinition>
     <Compile Include="Core\DependencyResolver.cs" />
     <Compile Include="Views\Renderers\ExcelRenderer.cs" />
+    <Compile Include="Views\Renderers\IRenderer.cs" />
+    <Compile Include="Views\Renderers\Wrappers\ExcelRendererWrapper.cs" />
+    <Compile Include="Views\Renderers\Wrappers\IRendererWrapper.cs" />
     <Compile Include="Views\WindowBase.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

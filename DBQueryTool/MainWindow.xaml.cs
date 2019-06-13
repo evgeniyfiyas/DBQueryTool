@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using DBQueryTool.Views;
+using DBQueryTool.Views.Renderers.Wrappers;
 
 namespace DBQueryTool
 {
@@ -78,7 +79,7 @@ namespace DBQueryTool
 
             // TODO: Remove hardcoded values/refactor
             template.AddVariable("Users", formatted);
-
+            
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
                 Filter = "Microsoft Excel Spreadsheet (*.xlsx)|*.xlsx",
@@ -89,7 +90,9 @@ namespace DBQueryTool
                 string outputFilePath = saveFileDialog.FileName;
 
                 var renderer = new ExcelRenderer();
-                renderer.Render(outputFilePath, template);
+                var renderable = new ExcelRendererWrapper(outputFilePath, template);
+
+                renderer.Render(renderable);
 
                 Logger.Info("Successfully exported xls file to: " + outputFilePath);
                 MessageBox.Show("Report generated", "DBQueryTool", MessageBoxButton.OK, MessageBoxImage.Information);
