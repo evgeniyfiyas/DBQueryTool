@@ -25,6 +25,7 @@ namespace DBQueryTool
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             var ex = (Exception)e.ExceptionObject;
+            logger.Error("Inner exception : " + ex.InnerException);
             logger.Error("UnhandledException caught : " + ex.Message);
             logger.Error("UnhandledException StackTrace : " + ex.StackTrace);
             logger.Fatal("Runtime terminating: {0}", e.IsTerminating);
