@@ -1,12 +1,11 @@
 ﻿using ClosedXML.Report;
+using DBQueryTool.Core;
 using DBQueryTool.Core.Formatters;
 using DBQueryTool.Models.DataProviders;
 using DBQueryTool.Views.Renderers;
 using Microsoft.Win32;
 using NLog;
-using System;
 using System.Data;
-using System.Data.OleDb;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -73,7 +72,7 @@ namespace DBQueryTool
 
         private void ExportToXlsButton_Click(object sender, RoutedEventArgs e)
         {
-            var formatter = new MSAccessFormatter();
+            var formatter = DependencyResolver.Container.GetInstance<IFormatter<DataTable>>();
             var formatted = formatter.Format(_queried);
 
             var template = new XLTemplate(_templateFilePath);
