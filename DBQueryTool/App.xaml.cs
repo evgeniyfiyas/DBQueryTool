@@ -14,7 +14,7 @@ namespace DBQueryTool
     /// </summary>
     public partial class App : Application
     {
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public App()
         {
@@ -25,10 +25,10 @@ namespace DBQueryTool
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             var ex = (Exception)e.ExceptionObject;
-            logger.Error("Inner exception : " + ex.InnerException);
-            logger.Error("UnhandledException caught : " + ex.Message);
-            logger.Error("UnhandledException StackTrace : " + ex.StackTrace);
-            logger.Fatal("Runtime terminating: {0}", e.IsTerminating);
+            Logger.Error("Inner exception : " + ex.InnerException);
+            Logger.Error("UnhandledException caught : " + ex.Message);
+            Logger.Error("UnhandledException StackTrace : " + ex.StackTrace);
+            Logger.Fatal("Runtime terminating: {0}", e.IsTerminating);
         }
     }
 }

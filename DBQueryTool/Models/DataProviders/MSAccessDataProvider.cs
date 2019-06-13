@@ -9,12 +9,12 @@ using System.Collections.Generic;
 
 namespace DBQueryTool.Models.DataProviders
 {
-    public class MSAccessDataProvider
+    public class MsAccessDataProvider
     {
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
-        private string _queryString;
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private readonly string _queryString;
 
-        public MSAccessDataProvider(string queryString)
+        public MsAccessDataProvider(string queryString)
         {
             _queryString = queryString;
         }
@@ -32,7 +32,7 @@ namespace DBQueryTool.Models.DataProviders
                 using (var connection = new OleDbConnection(_queryString))
                 {
                     connection.Open();
-                    logger.Info("Connected to database using connection string: " + _queryString);
+                    Logger.Info("Connected to database using connection string: " + _queryString);
 
                     var cmd = new OleDbCommand(query, connection);
                     var data = new DataTable();
@@ -42,7 +42,7 @@ namespace DBQueryTool.Models.DataProviders
             }
             catch (Exception ex)
             {
-                logger.Error("Can't connect to database using provided connection string. \n" + ex.StackTrace);
+                Logger.Error("Can't connect to database using provided connection string. \n" + ex.StackTrace);
                 return null;
             }
         }

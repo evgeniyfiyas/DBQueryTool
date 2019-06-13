@@ -16,7 +16,7 @@ namespace DBQueryTool.Core.Formatters
             {
                 var item = new Hashtable();
 
-                for (int i = 0; i < formattable.Columns.Count; i++)
+                for (var i = 0; i < formattable.Columns.Count; i++)
                 {
                     item[formattable.Columns[i].ColumnName] = row[i].ToString();
                 }
