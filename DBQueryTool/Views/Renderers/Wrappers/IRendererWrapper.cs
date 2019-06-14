@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DBQueryTool.Views.Renderers.Wrappers
 {
-    interface IRendererWrapper
+    public interface IRendererWrapper
     {
 
     }

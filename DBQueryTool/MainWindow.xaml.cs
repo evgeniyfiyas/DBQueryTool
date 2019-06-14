@@ -1,4 +1,5 @@
-﻿using ClosedXML.Report;
+﻿using System.Collections;
+using ClosedXML.Report;
 using DBQueryTool.Core;
 using DBQueryTool.Core.Formatters;
 using DBQueryTool.Models.DataProviders;
@@ -21,7 +22,7 @@ namespace DBQueryTool
     {
         private DataTable _queried;
         private string _templateFilePath;
-        private MsAccessDataProvider _dataProvider;
+        private IDataProvider _dataProvider;
 
         public MainWindow()
         {
@@ -31,7 +32,7 @@ namespace DBQueryTool
         private void ConnectionTestButton_Click(object sender, RoutedEventArgs e)
         {
             var connectionString = ConnectionStringTextBox.Text;
-            _dataProvider = new MsAccessDataProvider(connectionString);
+            _dataProvider = DependencyResolver.Container.GetInstance<IDataProvider>(new ExplicitArguments().Set(connectionString));
             if (_dataProvider.TestConnection())
             {
                 MessageBox.Show("Connected.", "DBQueryTool: Success", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -80,10 +81,10 @@ namespace DBQueryTool
 
             // TODO: Remove hardcoded values/refactor
             template.AddVariable("Users", formatted);
-            
+
             var renderer = DependencyResolver.Container.GetInstance<IRenderer<ExcelRendererWrapper>>();
             var renderable = DependencyResolver.Container.GetInstance<ExcelRendererWrapper>(new ExplicitArguments().Set(template));
-            
+
             if (renderer.Render(renderable))
             {
                 MessageBox.Show("Report generated", "DBQueryTool", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -95,7 +96,7 @@ namespace DBQueryTool
         }
 
         private void QueryTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        { 
+        {
             var regex = new Regex(@"(?i)(SELECT).*");
             var match = regex.Match(QueryTextBox.Text);
             QueryGoButton.IsEnabled = QueryTextBox.Text.Length > 0 && match.Success;

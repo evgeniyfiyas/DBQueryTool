@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DBQueryTool.Models.DataProviders
 {
-    interface IDataProvider
+    public interface IDataProvider
     {
         bool TestConnection();
         DataTable Query(string query);

@@ -1,10 +1,5 @@
 ﻿using NLog;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace DBQueryTool
@@ -29,6 +24,21 @@ namespace DBQueryTool
             Logger.Error("UnhandledException caught : " + ex.Message);
             Logger.Error("UnhandledException StackTrace : " + ex.StackTrace);
             Logger.Fatal("Runtime terminating: {0}", e.IsTerminating);
+        }
+
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            // setting properties after dependency resolve?
+            /*
+            var renderer = DependencyResolver.Container.GetInstance<IRenderer<IRendererWrapper>>();
+            var renderable = DependencyResolver.Container.GetInstance<IRendererWrapper>();
+            var dataProvider = DependencyResolver.Container.GetInstance<IDataProvider>();
+            var formatter = DependencyResolver.Container.GetInstance<IFormatter<IEnumerable>>();
+            */
+
+            new MainWindow().Show();
         }
     }
 }

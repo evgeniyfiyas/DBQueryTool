@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DBQueryTool.Views.Renderers
 {
-    interface IRenderer<IRendererWrapper>
+    public interface IRenderer<IRendererWrapper>
     {
         bool Render(IRendererWrapper renderable);
     }

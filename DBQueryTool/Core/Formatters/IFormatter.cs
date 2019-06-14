@@ -2,8 +2,8 @@
 
 namespace DBQueryTool.Core.Formatters
 {
-    interface IFormatter<T>
+    public interface IFormatter<IEnumerable>
     {
-        List<object> Format(T formattable);
+        List<object> Format(IEnumerable formattable);
     }
 }
