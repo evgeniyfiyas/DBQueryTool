@@ -1,18 +1,13 @@
-﻿using System.Collections;
-using ClosedXML.Report;
-using DBQueryTool.Core;
+﻿using ClosedXML.Report;
 using DBQueryTool.Core.Formatters;
 using DBQueryTool.Models.DataProviders;
+using DBQueryTool.Views;
 using DBQueryTool.Views.Renderers;
 using Microsoft.Win32;
 using System.Data;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using DBQueryTool.Views;
-using DBQueryTool.Views.Renderers.Wrappers;
-using DocumentFormat.OpenXml.Wordprocessing;
-using StructureMap.Pipeline;
 
 namespace DBQueryTool
 {
@@ -23,12 +18,17 @@ namespace DBQueryTool
     {
         private DataTable _queried;
         private string _templateFilePath;
-        private readonly IDataProvider _dataProvider;
 
-        public MainWindow(IDataProvider dataProvider)
+        private readonly IDataProvider _dataProvider;
+        private readonly IFormatter<DataTable> _formatter;
+        private readonly IRenderer _renderer;
+
+        public MainWindow(IDataProvider dataProvider, IFormatter<DataTable> formatter, IRenderer renderer)
         {
-            _dataProvider = dataProvider;
             InitializeComponent();
+            _dataProvider = dataProvider;
+            _formatter = formatter;
+            _renderer = renderer;
         }
 
         private void ConnectionTestButton_Click(object sender, RoutedEventArgs e)
@@ -80,18 +80,13 @@ namespace DBQueryTool
 
         private void ExportToXlsButton_Click(object sender, RoutedEventArgs e)
         {
-            var formatter = DependencyResolver.Container.GetInstance<IFormatter<DataTable>>();
-            var formatted = formatter.Format(_queried);
-
             var template = new XLTemplate(_templateFilePath);
+            var formatted = _formatter.Format(_queried);
 
             // TODO: Remove hardcoded values/refactor
             template.AddVariable("Users", formatted);
 
-            var renderer = DependencyResolver.Container.GetInstance<IRenderer<ExcelRendererWrapper>>();
-            var renderable = DependencyResolver.Container.GetInstance<ExcelRendererWrapper>(new ExplicitArguments().Set(template));
-
-            if (renderer.Render(renderable))
+            if (_renderer.Render(template))
             {
                 MessageBox.Show("Report generated", "DBQueryTool", MessageBoxButton.OK, MessageBoxImage.Information);
             }

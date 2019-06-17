@@ -1,12 +1,7 @@
-﻿using System;
-using System.Data.OleDb;
-using NLog;
+﻿using DBQueryTool.Utils;
+using System;
 using System.Data;
-using System.ComponentModel;
-using System.Collections;
-using System.Text.RegularExpressions;
-using System.Collections.Generic;
-using DBQueryTool.Utils;
+using System.Data.OleDb;
 
 namespace DBQueryTool.Models.DataProviders
 {

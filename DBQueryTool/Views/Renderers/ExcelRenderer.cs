@@ -1,18 +1,14 @@
 ﻿using System.Collections.Generic;
 using ClosedXML.Report;
 using DBQueryTool.Utils;
-using DBQueryTool.Views.Renderers.Wrappers;
 using Microsoft.Win32;
-using NLog;
 
 namespace DBQueryTool.Views.Renderers
 {
-    class ExcelRenderer : LoggedClass, IRenderer<ExcelRendererWrapper>
+    class ExcelRenderer : LoggedClass, IRenderer
     {
-        public bool Render(ExcelRendererWrapper renderable)
+        public bool Render(XLTemplate template, Dictionary<string, object> optionalParameters = null)
         {
-            var template = renderable.Template;
-
             var saveFileDialog = new SaveFileDialog
             {
                 Filter = "Microsoft Excel Spreadsheet (*.xlsx)|*.xlsx",
@@ -21,7 +17,7 @@ namespace DBQueryTool.Views.Renderers
             if (saveFileDialog.ShowDialog() == true)
             {
                 var outputFile = saveFileDialog.FileName;
-                
+
                 template.Generate();
                 template.SaveAs(outputFile);
 

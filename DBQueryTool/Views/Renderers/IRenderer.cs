@@ -1,13 +1,10 @@
-﻿using System;
+﻿using ClosedXML.Report;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DBQueryTool.Views.Renderers
 {
-    public interface IRenderer<IRendererWrapper>
+    public interface IRenderer
     {
-        bool Render(IRendererWrapper renderable);
+        bool Render(XLTemplate template, Dictionary<string, object> optionalParameters = null);
     }
 }
