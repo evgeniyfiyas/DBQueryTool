@@ -1,5 +1,5 @@
-﻿using NLog;
-using System.Windows;
+﻿using System.Windows;
+using NLog;
 
 namespace DBQueryTool.Views
 {

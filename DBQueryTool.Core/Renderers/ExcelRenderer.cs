@@ -3,7 +3,7 @@ using ClosedXML.Report;
 using DBQueryTool.Utils;
 using Microsoft.Win32;
 
-namespace DBQueryTool.Views.Renderers
+namespace DBQueryTool.Core.Renderers
 {
     class ExcelRenderer : LoggedClass, IRenderer
     {

@@ -1,7 +1,7 @@
-﻿using ClosedXML.Report;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using ClosedXML.Report;
 
-namespace DBQueryTool.Views.Renderers
+namespace DBQueryTool.Core.Renderers
 {
     public interface IRenderer
     {

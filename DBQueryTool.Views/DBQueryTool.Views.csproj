@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2A216546-D5C3-4CE8-B2C9-D7069FEE520A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>DBQueryTool</RootNamespace>
-    <AssemblyName>DBQueryTool</AssemblyName>
+    <RootNamespace>DBQueryTool.Views</RootNamespace>
+    <AssemblyName>DBQueryTool.Views</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -100,36 +100,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Core\DependencyResolver.cs" />
-    <Compile Include="Views\Windows\LoginWindow.xaml.cs">
-      <DependentUpon>LoginWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Models\DataProviders\IDataProvider.cs" />
-    <Compile Include="Utils\LoggedClass.cs" />
-    <Compile Include="Views\Renderers\ExcelRenderer.cs" />
-    <Compile Include="Views\Renderers\IRenderer.cs" />
-    <Compile Include="Views\WindowBase.cs" />
-    <Page Include="Views\Windows\LoginWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Windows\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="WindowBase.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Core\Formatters\IFormatter.cs" />
-    <Compile Include="Core\Formatters\MSAccessFormatter.cs" />
-    <Compile Include="Views\Windows\MainWindow.xaml.cs">
+    <Compile Include="Windows\LoginWindow.xaml.cs">
+      <DependentUpon>LoginWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\DataProviders\MSAccessDataProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -156,6 +140,29 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\DBQueryTool.Core\DBQueryTool.Core.csproj">
+      <Project>{9e6bc582-dac5-402c-aceb-74783d3190d2}</Project>
+      <Name>DBQueryTool.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBQueryTool.Models\DBQueryTool.Models.csproj">
+      <Project>{f7febeca-f95a-4c06-9d3b-1ce1753aba79}</Project>
+      <Name>DBQueryTool.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBQueryTool.Utils\DBQueryTool.Utils.csproj">
+      <Project>{5d94d54c-1490-45dc-ab0f-d6d1b8d75ace}</Project>
+      <Name>DBQueryTool.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Windows\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Windows\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

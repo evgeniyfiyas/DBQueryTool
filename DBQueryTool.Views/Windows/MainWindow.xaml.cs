@@ -4,8 +4,8 @@ using System.Windows;
 using System.Windows.Controls;
 using ClosedXML.Report;
 using DBQueryTool.Core.Formatters;
+using DBQueryTool.Core.Renderers;
 using DBQueryTool.Models.DataProviders;
-using DBQueryTool.Views.Renderers;
 using Microsoft.Win32;
 
 namespace DBQueryTool.Views.Windows

@@ -4,7 +4,7 @@ using System.Data;
 
 namespace DBQueryTool.Core.Formatters
 {
-    class MSAccessFormatter : IFormatter<DataTable>
+    class MsAccessFormatter : IFormatter<DataTable>
     {
         public List<object> Format(DataTable formattable)
         {

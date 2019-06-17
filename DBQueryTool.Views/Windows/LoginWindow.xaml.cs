@@ -1,5 +1,5 @@
-﻿using DBQueryTool.Core;
-using System.Windows;
+﻿using System.Windows;
+using DBQueryTool.Core;
 
 namespace DBQueryTool.Views.Windows
 {

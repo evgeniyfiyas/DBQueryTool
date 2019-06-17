@@ -1,16 +1,16 @@
-﻿using DBQueryTool.Core.Formatters;
+﻿using System.Data;
+using DBQueryTool.Core.Formatters;
+using DBQueryTool.Core.Renderers;
 using DBQueryTool.Models.DataProviders;
-using DBQueryTool.Views.Renderers;
 using StructureMap;
-using System.Data;
 
 namespace DBQueryTool.Core
 {
-    static class DependencyResolver
+    public static class DependencyResolver
     {
         public static Container Container { get; set; } = new Container(_ =>
         {
-            _.For<IFormatter<DataTable>>().Use<MSAccessFormatter>();
+            _.For<IFormatter<DataTable>>().Use<MsAccessFormatter>();
             _.For<IDataProvider>().Use<MsAccessDataProvider>();
             _.For<IRenderer>().Use<ExcelRenderer>();
         });

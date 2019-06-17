@@ -1,10 +1,10 @@
-﻿using NLog;
-using System;
+﻿using System;
 using System.Windows;
 using DBQueryTool.Core;
 using DBQueryTool.Views.Windows;
+using NLog;
 
-namespace DBQueryTool
+namespace DBQueryTool.Views
 {
     /// <summary>
     /// Interaction logic for App.xaml
