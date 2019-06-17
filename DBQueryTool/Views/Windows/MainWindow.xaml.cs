@@ -1,15 +1,14 @@
-﻿using ClosedXML.Report;
-using DBQueryTool.Core.Formatters;
-using DBQueryTool.Models.DataProviders;
-using DBQueryTool.Views;
-using DBQueryTool.Views.Renderers;
-using Microsoft.Win32;
-using System.Data;
+﻿using System.Data;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using ClosedXML.Report;
+using DBQueryTool.Core.Formatters;
+using DBQueryTool.Models.DataProviders;
+using DBQueryTool.Views.Renderers;
+using Microsoft.Win32;
 
-namespace DBQueryTool
+namespace DBQueryTool.Views.Windows
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using DBQueryTool.Core;
+using DBQueryTool.Views.Windows;
 
 namespace DBQueryTool
 {
@@ -31,8 +32,8 @@ namespace DBQueryTool
         {
             base.OnStartup(e);
 
-            var mainWindow = DependencyResolver.Container.GetInstance<MainWindow>();
-            mainWindow.Show();
+            var loginWindow = DependencyResolver.Container.GetInstance<LoginWindow>();
+            loginWindow.Show();
         }
     }
 }
