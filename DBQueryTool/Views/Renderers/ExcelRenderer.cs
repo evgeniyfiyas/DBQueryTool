@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using ClosedXML.Report;
+using DBQueryTool.Utils;
 using DBQueryTool.Views.Renderers.Wrappers;
 using Microsoft.Win32;
 using NLog;
 
 namespace DBQueryTool.Views.Renderers
 {
-    class ExcelRenderer : IRenderer<ExcelRendererWrapper>
+    class ExcelRenderer : LoggedClass, IRenderer<ExcelRendererWrapper>
     {
         public bool Render(ExcelRendererWrapper renderable)
         {
@@ -24,7 +25,7 @@ namespace DBQueryTool.Views.Renderers
                 template.Generate();
                 template.SaveAs(outputFile);
 
-                //Logger.Info("Successfully exported xls file to: " + outputFile);
+                Logger.Info("Successfully exported xls file to: " + outputFile);
                 return true;
             }
             else

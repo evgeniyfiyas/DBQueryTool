@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using DBQueryTool.Views;
 using DBQueryTool.Views.Renderers.Wrappers;
+using DocumentFormat.OpenXml.Wordprocessing;
 using StructureMap.Pipeline;
 
 namespace DBQueryTool
@@ -22,25 +23,30 @@ namespace DBQueryTool
     {
         private DataTable _queried;
         private string _templateFilePath;
-        private IDataProvider _dataProvider;
+        private readonly IDataProvider _dataProvider;
 
-        public MainWindow()
+        public MainWindow(IDataProvider dataProvider)
         {
+            _dataProvider = dataProvider;
             InitializeComponent();
         }
 
         private void ConnectionTestButton_Click(object sender, RoutedEventArgs e)
         {
-            var connectionString = ConnectionStringTextBox.Text;
-            _dataProvider = DependencyResolver.Container.GetInstance<IDataProvider>(new ExplicitArguments().Set(connectionString));
-            if (_dataProvider.TestConnection())
+            _dataProvider.Build(ConnectionStringTextBox.Text);
+            var result = _dataProvider.TestConnection();
+            if (result == true)
             {
                 MessageBox.Show("Connected.", "DBQueryTool: Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 ChangeControlsState(false, false, true, false, true, false);
             }
-            else
+            else if (result == false)
             {
                 MessageBox.Show("Invalid connection string.", "DBQueryTool: Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                MessageBox.Show("Connection string is not specified.", "DBQueryTool: Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

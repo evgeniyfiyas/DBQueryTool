@@ -1,9 +1,13 @@
-﻿using DBQueryTool.Core.Formatters;
+﻿using System;
+using DBQueryTool.Core.Formatters;
 using StructureMap;
 using System.Data;
+using System.Linq;
 using DBQueryTool.Models.DataProviders;
 using DBQueryTool.Views.Renderers;
 using DBQueryTool.Views.Renderers.Wrappers;
+using NLog;
+using StructureMap.Pipeline;
 
 namespace DBQueryTool.Core
 {

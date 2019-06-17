@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace DBQueryTool.Utils
 {
-    // Possible merge with WindowBase?
-    // https://ardalis.com/configure-nlog-with-structuremap
-    public class LoggedClass
+    public abstract class LoggedClass
     {
         protected static readonly Logger Logger = LogManager.GetCurrentClassLogger();
     }

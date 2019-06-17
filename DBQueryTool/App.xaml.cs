@@ -1,6 +1,7 @@
 ﻿using NLog;
 using System;
 using System.Windows;
+using DBQueryTool.Core;
 
 namespace DBQueryTool
 {
@@ -30,15 +31,8 @@ namespace DBQueryTool
         {
             base.OnStartup(e);
 
-            // setting properties after dependency resolve?
-            /*
-            var renderer = DependencyResolver.Container.GetInstance<IRenderer<IRendererWrapper>>();
-            var renderable = DependencyResolver.Container.GetInstance<IRendererWrapper>();
-            var dataProvider = DependencyResolver.Container.GetInstance<IDataProvider>();
-            var formatter = DependencyResolver.Container.GetInstance<IFormatter<IEnumerable>>();
-            */
-
-            new MainWindow().Show();
+            var mainWindow = DependencyResolver.Container.GetInstance<MainWindow>();
+            mainWindow.Show();
         }
     }
 }

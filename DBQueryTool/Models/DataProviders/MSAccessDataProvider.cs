@@ -6,21 +6,26 @@ using System.ComponentModel;
 using System.Collections;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using DBQueryTool.Utils;
 
 namespace DBQueryTool.Models.DataProviders
 {
-    public class MsAccessDataProvider : IDataProvider
+    public class MsAccessDataProvider : LoggedClass, IDataProvider
     {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-        private readonly string _queryString;
-
-        public MsAccessDataProvider(string queryString)
+        private string _queryString;
+        
+        public void Build(string querystring)
         {
-            _queryString = queryString;
+            _queryString = querystring;
         }
 
-        public bool TestConnection()
+        public bool? TestConnection()
         {
+            if (_queryString == null)
+            {
+                return null;
+            }
+
             return Query("select 1") != null;
         }
 

@@ -9,7 +9,8 @@ namespace DBQueryTool.Models.DataProviders
 {
     public interface IDataProvider
     {
-        bool TestConnection();
+        bool? TestConnection();
         DataTable Query(string query);
+        void Build(string queryString);
     }
 }
