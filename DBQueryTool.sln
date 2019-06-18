@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQueryTool.Models", "DBQue
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQueryTool.Utils", "DBQueryTool.Utils\DBQueryTool.Utils.csproj", "{5D94D54C-1490-45DC-AB0F-D6D1B8D75ACE}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DBQueryTool.Database", "DBQueryToolDataBase\DBQueryTool.Database.sqlproj", "{B698C175-EDAD-4576-B323-095A398FA414}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,12 @@ Global
 		{5D94D54C-1490-45DC-AB0F-D6D1B8D75ACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D94D54C-1490-45DC-AB0F-D6D1B8D75ACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D94D54C-1490-45DC-AB0F-D6D1B8D75ACE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B698C175-EDAD-4576-B323-095A398FA414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B698C175-EDAD-4576-B323-095A398FA414}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B698C175-EDAD-4576-B323-095A398FA414}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{B698C175-EDAD-4576-B323-095A398FA414}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B698C175-EDAD-4576-B323-095A398FA414}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B698C175-EDAD-4576-B323-095A398FA414}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
