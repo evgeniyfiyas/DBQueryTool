@@ -43,6 +43,11 @@
     <Compile Include="DataProviders\DBQueryToolDbContext.cs" />
     <Compile Include="DataProviders\IDataProvider.cs" />
     <Compile Include="DataProviders\MSAccessDataProvider.cs" />
+    <Compile Include="Migrations\201906181357368_Init.cs" />
+    <Compile Include="Migrations\201906181357368_Init.Designer.cs">
+      <DependentUpon>201906181357368_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Report.cs" />
     <Compile Include="Models\Template.cs" />
     <Compile Include="Models\TemplateType.cs" />
@@ -87,6 +92,11 @@
       <Project>{5D94D54C-1490-45DC-AB0F-D6D1B8D75ACE}</Project>
       <Name>DBQueryTool.Utils</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201906181357368_Init.resx">
+      <DependentUpon>201906181357368_Init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
