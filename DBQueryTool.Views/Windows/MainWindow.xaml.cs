@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using ClosedXML.Report;
+using DBQueryTool.Core;
 using DBQueryTool.Core.Formatters;
 using DBQueryTool.Core.Renderers;
 using DBQueryTool.DataAccess.DataProviders;
@@ -16,7 +17,7 @@ namespace DBQueryTool.Views.Windows
     public partial class MainWindow : WindowBase
     {
         private DataTable _queried;
-        private string _templateFilePath;
+        private object _templateObj;
 
         private readonly IDataProvider _dataProvider;
         private readonly IFormatter<DataTable> _formatter;
@@ -64,22 +65,31 @@ namespace DBQueryTool.Views.Windows
 
         private void LoadTemplateButton_Click(object sender, RoutedEventArgs e)
         {
-            var openFileDialog = new OpenFileDialog
+            using (var loadTemplateOptionsWindow =
+                DependencyResolver.Container.GetInstance<LoadTemplateOptionsWindow>())
             {
-                Filter = "xlsx files (*.xlsx)|*.xlsx"
-            };
-            if (openFileDialog.ShowDialog() == true)
-            {
-                Logger.Info("XLSX template loaded successfully.");
-                _templateFilePath = openFileDialog.FileName;
-                MessageBox.Show("Template loaded", "DBQueryTool", MessageBoxButton.OK, MessageBoxImage.Information);
-                ExportToXlsButton.IsEnabled = true;
+                var dialogResult = loadTemplateOptionsWindow.ShowDialog();
+                if (dialogResult == true)
+                {
+                    _templateObj = loadTemplateOptionsWindow.Result;
+                    ExportToXlsButton.IsEnabled = true;
+                }
             }
         }
 
         private void ExportToXlsButton_Click(object sender, RoutedEventArgs e)
         {
-            var template = new XLTemplate(_templateFilePath);
+            XLTemplate template;
+            if (_templateObj is XLTemplate)
+            {
+                template = (XLTemplate)_templateObj;
+            }
+            else
+            {
+                // TODO: Get XLTemplate from Template object
+                template = (XLTemplate)_templateObj;
+            }
+
             var formatted = _formatter.Format(_queried);
 
             // TODO: Remove hardcoded values/refactor

@@ -43,9 +43,9 @@
     <Compile Include="DataProviders\DBQueryToolDbContext.cs" />
     <Compile Include="DataProviders\IDataProvider.cs" />
     <Compile Include="DataProviders\MSAccessDataProvider.cs" />
-    <Compile Include="Migrations\201906181357368_Init.cs" />
-    <Compile Include="Migrations\201906181357368_Init.Designer.cs">
-      <DependentUpon>201906181357368_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201906182032083_Init.cs" />
+    <Compile Include="Migrations\201906182032083_Init.Designer.cs">
+      <DependentUpon>201906182032083_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Report.cs" />
@@ -61,12 +61,6 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="MySql.Data, Version=6.10.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.6.10.8\lib\net452\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="MySql.Data.Entity.EF6, Version=6.10.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.Entity.6.10.8\lib\net452\MySql.Data.Entity.EF6.dll</HintPath>
-    </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.6.4\lib\net45\NLog.dll</HintPath>
     </Reference>
@@ -94,8 +88,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201906181357368_Init.resx">
-      <DependentUpon>201906181357368_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906182032083_Init.resx">
+      <DependentUpon>201906182032083_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -12,10 +12,14 @@ namespace DBQueryTool.DataAccess.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        SerializedReport = c.String(unicode: false),
+                        ReportFile_Name = c.String(),
+                        ReportFile_TransactionContext = c.Binary(),
+                        ReportFile_Position = c.Long(nullable: false),
+                        ReportFile_ReadTimeout = c.Int(nullable: false),
+                        ReportFile_WriteTimeout = c.Int(nullable: false),
                         UserId = c.Int(nullable: false),
                         TemplateId = c.Int(nullable: false),
-                        CreatedAt = c.DateTime(nullable: false, precision: 0),
+                        CreatedAt = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -24,9 +28,14 @@ namespace DBQueryTool.DataAccess.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        SerializedTemplate = c.String(unicode: false),
+                        Name = c.String(),
+                        TemplateFile_Name = c.String(),
+                        TemplateFile_TransactionContext = c.Binary(),
+                        TemplateFile_Position = c.Long(nullable: false),
+                        TemplateFile_ReadTimeout = c.Int(nullable: false),
+                        TemplateFile_WriteTimeout = c.Int(nullable: false),
                         TypeId = c.Int(nullable: false),
-                        CreatedAt = c.DateTime(nullable: false, precision: 0),
+                        CreatedAt = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -35,8 +44,8 @@ namespace DBQueryTool.DataAccess.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(unicode: false),
-                        FileExtension = c.String(unicode: false),
+                        Name = c.String(),
+                        FileExtension = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -45,8 +54,8 @@ namespace DBQueryTool.DataAccess.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Email = c.String(unicode: false),
-                        Password = c.String(unicode: false),
+                        Email = c.String(),
+                        Password = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             

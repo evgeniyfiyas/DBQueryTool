@@ -13,7 +13,7 @@ namespace DBQueryTool.DataAccess.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201906181357368_Init"; }
+            get { return "201906182032083_Init"; }
         }
         
         string IMigrationMetadata.Source
