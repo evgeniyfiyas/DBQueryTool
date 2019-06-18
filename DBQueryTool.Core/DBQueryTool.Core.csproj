@@ -98,9 +98,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DBQueryTool.Models\DBQueryTool.Models.csproj">
-      <Project>{F7FEBECA-F95A-4C06-9D3B-1CE1753ABA79}</Project>
-      <Name>DBQueryTool.Models</Name>
+    <ProjectReference Include="..\DBQueryTool.DataAccess\DBQueryTool.DataAccess.csproj">
+      <Project>{95040539-3C8E-48ED-AA70-3B0A5923161B}</Project>
+      <Name>DBQueryTool.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\DBQueryTool.Utils\DBQueryTool.Utils.csproj">
       <Project>{5D94D54C-1490-45DC-AB0F-D6D1B8D75ACE}</Project>

@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using DBQueryTool.Core.Formatters;
 using DBQueryTool.Core.Renderers;
-using DBQueryTool.Models.DataProviders;
+using DBQueryTool.DataAccess.DataProviders;
 using StructureMap;
 
 namespace DBQueryTool.Core

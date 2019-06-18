@@ -145,9 +145,9 @@
       <Project>{9e6bc582-dac5-402c-aceb-74783d3190d2}</Project>
       <Name>DBQueryTool.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DBQueryTool.Models\DBQueryTool.Models.csproj">
-      <Project>{f7febeca-f95a-4c06-9d3b-1ce1753aba79}</Project>
-      <Name>DBQueryTool.Models</Name>
+    <ProjectReference Include="..\DBQueryTool.DataAccess\DBQueryTool.DataAccess.csproj">
+      <Project>{95040539-3C8E-48ED-AA70-3B0A5923161B}</Project>
+      <Name>DBQueryTool.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\DBQueryTool.Utils\DBQueryTool.Utils.csproj">
       <Project>{5d94d54c-1490-45dc-ab0f-d6d1b8d75ace}</Project>

@@ -9,11 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth", "Auth\Auth.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQueryTool.Core", "DBQueryTool.Core\DBQueryTool.Core.csproj", "{9E6BC582-DAC5-402C-ACEB-74783D3190D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQueryTool.Models", "DBQueryTool.Models\DBQueryTool.Models.csproj", "{F7FEBECA-F95A-4C06-9D3B-1CE1753ABA79}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQueryTool.Utils", "DBQueryTool.Utils\DBQueryTool.Utils.csproj", "{5D94D54C-1490-45DC-AB0F-D6D1B8D75ACE}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DBQueryTool.Database", "DBQueryToolDataBase\DBQueryTool.Database.sqlproj", "{B698C175-EDAD-4576-B323-095A398FA414}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQueryTool.DataAccess", "DBQueryTool.DataAccess\DBQueryTool.DataAccess.csproj", "{95040539-3C8E-48ED-AA70-3B0A5923161B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,20 +31,14 @@ Global
 		{9E6BC582-DAC5-402C-ACEB-74783D3190D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E6BC582-DAC5-402C-ACEB-74783D3190D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E6BC582-DAC5-402C-ACEB-74783D3190D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F7FEBECA-F95A-4C06-9D3B-1CE1753ABA79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F7FEBECA-F95A-4C06-9D3B-1CE1753ABA79}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F7FEBECA-F95A-4C06-9D3B-1CE1753ABA79}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F7FEBECA-F95A-4C06-9D3B-1CE1753ABA79}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5D94D54C-1490-45DC-AB0F-D6D1B8D75ACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5D94D54C-1490-45DC-AB0F-D6D1B8D75ACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D94D54C-1490-45DC-AB0F-D6D1B8D75ACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D94D54C-1490-45DC-AB0F-D6D1B8D75ACE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B698C175-EDAD-4576-B323-095A398FA414}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B698C175-EDAD-4576-B323-095A398FA414}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B698C175-EDAD-4576-B323-095A398FA414}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{B698C175-EDAD-4576-B323-095A398FA414}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B698C175-EDAD-4576-B323-095A398FA414}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B698C175-EDAD-4576-B323-095A398FA414}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{95040539-3C8E-48ED-AA70-3B0A5923161B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95040539-3C8E-48ED-AA70-3B0A5923161B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95040539-3C8E-48ED-AA70-3B0A5923161B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95040539-3C8E-48ED-AA70-3B0A5923161B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

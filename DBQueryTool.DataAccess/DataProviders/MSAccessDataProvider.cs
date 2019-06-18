@@ -1,9 +1,9 @@
-﻿using DBQueryTool.Utils;
-using System;
+﻿using System;
 using System.Data;
 using System.Data.OleDb;
+using DBQueryTool.Utils;
 
-namespace DBQueryTool.Models.DataProviders
+namespace DBQueryTool.DataAccess.DataProviders
 {
     public class MsAccessDataProvider : LoggedClass, IDataProvider
     {
