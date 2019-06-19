@@ -114,5 +114,12 @@ namespace DBQueryTool.Views.Windows
             LoadTemplateButton.IsEnabled = loadTemplateButtonIsEnabled;
             ExportToXlsButton.IsEnabled = exportToExcelButtonIsEnabled;
         }
+
+        private void DatabaseProvidersComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            // TODO: Load combobox with IDataProvider implemented classes names/remove hardcoded values
+            DatabaseProvidersComboBox.Items.Add("MSAccess");
+            DatabaseProvidersComboBox.SelectedIndex = 0;
+        }
     }
 }
