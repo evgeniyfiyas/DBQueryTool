@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.SqlTypes;
 using System.IO;
 using System.Linq;
@@ -27,8 +28,7 @@ namespace DBQueryTool.Views.Windows
     /// </summary>
     public partial class LoadTemplateOptionsWindow : WindowBase, IDisposable
     {
-        private string _templatePath;
-        public object Result { get; private set; }
+        public Template Result { get; private set; }
 
         public LoadTemplateOptionsWindow()
         {
@@ -44,8 +44,13 @@ namespace DBQueryTool.Views.Windows
             if (openFileDialog.ShowDialog() == true)
             {
                 Logger.Info("Template filepath provided successfully.");
-                _templatePath = openFileDialog.FileName;
-                Result = new XLTemplate(_templatePath);
+                Result = new Template
+                {
+                    CreatedAt = new DateTime(),
+                    Name = "Local File",
+                    TemplateFileBytes = ReadFile(openFileDialog.FileName),
+                    TypeId = -1
+                };
                 MessageBox.Show("Template loaded", "DBQueryTool", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
@@ -57,12 +62,15 @@ namespace DBQueryTool.Views.Windows
 
         private void UploadLocalTemplateButton_Click(object sender, RoutedEventArgs e)
         {
-            /*
-             
             if (SaveToDbCheckBox.IsChecked == true)
             {
                 var templateName = TemplateNameTextBox.Text.Trim();
-                if (templateName.Length == 0)
+                if (Result == null)
+                {
+                    MessageBox.Show("Template is not loaded.", "DBQueryTool", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                else if (templateName.Length == 0)
                 {
                     MessageBox.Show("Template name can't be empty!", "DBQueryTool", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
@@ -78,20 +86,17 @@ namespace DBQueryTool.Views.Windows
                         }
                         else
                         {
-                            var fs = new FileStream(_templatePath, FileMode.Open, FileAccess.Read);
                             dbContext.Templates.Add(new Template()
                             {
-                                CreatedAt = new DateTime(),
                                 Name = templateName,
                                 TypeId = 0,
-                                TemplateFile = fs,
+                                TemplateFileBytes = Result.TemplateFileBytes,
                             });
+                            dbContext.SaveChanges();
                         }
                     }
                 }
             } 
-
-            */
 
             this.DialogResult = Result != null;
             this.Close();
@@ -100,6 +105,42 @@ namespace DBQueryTool.Views.Windows
         public void Dispose()
         {
             // Dispose objects here...
+        }
+
+        private byte[] ReadFile(string path)
+        {
+            byte[] data = null;
+
+            var fileInfo = new FileInfo(path);
+            var numBytes = fileInfo.Length;
+
+            var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
+
+            var br = new BinaryReader(fileStream);
+
+            data = br.ReadBytes((int)numBytes);
+            br.Close();
+            fileStream.Close();
+
+            return data;
+        }
+
+        private void WindowBase_Loaded(object sender, RoutedEventArgs e)
+        {
+            var templateViewSource = ((CollectionViewSource)(this.FindResource("templateViewSource")));
+            using (var context = new DBQueryToolDbContext())
+            {
+                context.Templates.Load();
+                templateViewSource.Source = context.Templates.Local;
+            }
+        }
+
+        private void TemplateDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (templateDataGrid.SelectedItem == null) return;
+            Result = templateDataGrid.SelectedItem as Template;
+            this.DialogResult = true;
+            this.Close();
         }
     }
 }

@@ -43,9 +43,9 @@
     <Compile Include="DataProviders\DBQueryToolDbContext.cs" />
     <Compile Include="DataProviders\IDataProvider.cs" />
     <Compile Include="DataProviders\MSAccessDataProvider.cs" />
-    <Compile Include="Migrations\201906182032083_Init.cs" />
-    <Compile Include="Migrations\201906182032083_Init.Designer.cs">
-      <DependentUpon>201906182032083_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201906191106067_Init.cs" />
+    <Compile Include="Migrations\201906191106067_Init.Designer.cs">
+      <DependentUpon>201906191106067_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Report.cs" />
@@ -88,8 +88,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201906182032083_Init.resx">
-      <DependentUpon>201906182032083_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906191106067_Init.resx">
+      <DependentUpon>201906191106067_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

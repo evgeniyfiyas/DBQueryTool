@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -7,6 +8,7 @@ using DBQueryTool.Core;
 using DBQueryTool.Core.Formatters;
 using DBQueryTool.Core.Renderers;
 using DBQueryTool.DataAccess.DataProviders;
+using DBQueryTool.DataAccess.Models;
 using Microsoft.Win32;
 
 namespace DBQueryTool.Views.Windows
@@ -17,7 +19,7 @@ namespace DBQueryTool.Views.Windows
     public partial class MainWindow : WindowBase
     {
         private DataTable _queried;
-        private object _templateObj;
+        private Template _template;
 
         private readonly IDataProvider _dataProvider;
         private readonly IFormatter<DataTable> _formatter;
@@ -71,7 +73,7 @@ namespace DBQueryTool.Views.Windows
                 var dialogResult = loadTemplateOptionsWindow.ShowDialog();
                 if (dialogResult == true)
                 {
-                    _templateObj = loadTemplateOptionsWindow.Result;
+                    _template = loadTemplateOptionsWindow.Result;
                     ExportToXlsButton.IsEnabled = true;
                 }
             }
@@ -79,23 +81,14 @@ namespace DBQueryTool.Views.Windows
 
         private void ExportToXlsButton_Click(object sender, RoutedEventArgs e)
         {
-            XLTemplate template;
-            if (_templateObj is XLTemplate)
-            {
-                template = (XLTemplate)_templateObj;
-            }
-            else
-            {
-                // TODO: Get XLTemplate from Template object
-                template = (XLTemplate)_templateObj;
-            }
-
             var formatted = _formatter.Format(_queried);
 
-            // TODO: Remove hardcoded values/refactor
-            template.AddVariable("Users", formatted);
+            var xltemplate = new XLTemplate(new MemoryStream(_template.TemplateFileBytes));
 
-            if (_renderer.Render(template))
+            // TODO: Remove hardcoded values/refactor
+            xltemplate.AddVariable("Users", formatted);
+
+            if (_renderer.Render(xltemplate))
             {
                 MessageBox.Show("Report generated", "DBQueryTool", MessageBoxButton.OK, MessageBoxImage.Information);
             }
