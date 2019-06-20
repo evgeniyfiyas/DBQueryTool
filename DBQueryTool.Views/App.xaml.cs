@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using DBQueryTool.Core;
+using DBQueryTool.Utils;
 using DBQueryTool.Views.Windows;
 using NLog;
 

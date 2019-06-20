@@ -1,18 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using DBQueryTool.Utils;
+using MySql.Data.MySqlClient;
+
 
 namespace DBQueryTool.DataAccess.DataProviders
 {
-    public class MsAccessDataProvider : LoggedClass, IDataProvider
+    public class MySqlDataProvider : LoggedClass, IDataProvider
     {
         private string _queryString;
-
-        public void Build(string querystring)
-        {
-            _queryString = querystring;
-        }
 
         public bool? TestConnection()
         {
@@ -28,12 +29,12 @@ namespace DBQueryTool.DataAccess.DataProviders
         {
             try
             {
-                using (var connection = new OleDbConnection(_queryString))
+                using (var connection = new MySqlConnection(_queryString))
                 {
                     connection.Open();
                     Logger.Info("Connected to database using connection string: " + _queryString);
 
-                    var cmd = new OleDbCommand(query, connection);
+                    var cmd = new MySqlCommand(query, connection);
                     var data = new DataTable();
                     data.Load(cmd.ExecuteReader());
                     return data;
@@ -44,6 +45,11 @@ namespace DBQueryTool.DataAccess.DataProviders
                 Logger.Error("Can't connect to database using provided connection string. \n" + ex.StackTrace);
                 return null;
             }
+        }
+
+        public void Build(string queryString)
+        {
+            _queryString = queryString;
         }
     }
 }

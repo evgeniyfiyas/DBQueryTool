@@ -3,12 +3,14 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using ClosedXML.Excel;
 using ClosedXML.Report;
 using DBQueryTool.Core;
 using DBQueryTool.Core.Formatters;
 using DBQueryTool.Core.Renderers;
 using DBQueryTool.DataAccess.DataProviders;
 using DBQueryTool.DataAccess.Models;
+using DBQueryTool.Utils;
 using Microsoft.Win32;
 
 namespace DBQueryTool.Views.Windows
@@ -84,6 +86,7 @@ namespace DBQueryTool.Views.Windows
             var formatted = _formatter.Format(_queried);
 
             var xltemplate = new XLTemplate(new MemoryStream(_template.TemplateFileBytes));
+
 
             // TODO: Remove hardcoded values/refactor
             xltemplate.AddVariable("Users", formatted);
