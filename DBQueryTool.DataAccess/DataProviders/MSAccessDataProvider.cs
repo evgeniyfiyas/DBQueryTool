@@ -9,6 +9,8 @@ namespace DBQueryTool.DataAccess.DataProviders
     {
         private string _queryString;
 
+        public string VisibleName { get; set; } = "MsAccess";
+
         public void Build(string querystring)
         {
             _queryString = querystring;

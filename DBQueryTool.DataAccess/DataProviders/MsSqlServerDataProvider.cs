@@ -11,6 +11,8 @@ namespace DBQueryTool.DataAccess.DataProviders
 {
     public class MsSqlServerDataProvider : LoggedClass, IDataProvider
     {
+        public string VisibleName { get; set; } = "MsSqlServer";
+
         private string _queryString;
 
         public bool? TestConnection()

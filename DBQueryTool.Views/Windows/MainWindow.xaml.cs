@@ -1,16 +1,22 @@
-﻿using System.Data;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Data;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using ClosedXML.Excel;
 using ClosedXML.Report;
+using ClosedXML.Report.Utils;
 using DBQueryTool.Core;
 using DBQueryTool.Core.Formatters;
 using DBQueryTool.Core.Renderers;
 using DBQueryTool.DataAccess.DataProviders;
 using DBQueryTool.DataAccess.Models;
 using DBQueryTool.Utils;
+using DocumentFormat.OpenXml.Drawing.ChartDrawing;
 using Microsoft.Win32;
 
 namespace DBQueryTool.Views.Windows
@@ -22,21 +28,24 @@ namespace DBQueryTool.Views.Windows
     {
         private DataTable _queried;
         private Template _template;
+        private List<string> _availableProvidersNames;
 
-        private readonly IDataProvider _dataProvider;
+        private IDataProvider _dataProvider;
         private readonly IFormatter<DataTable> _formatter;
         private readonly IRenderer _renderer;
 
-        public MainWindow(IDataProvider dataProvider, IFormatter<DataTable> formatter, IRenderer renderer)
+        public MainWindow(IFormatter<DataTable> formatter, IRenderer renderer)
         {
             InitializeComponent();
-            _dataProvider = dataProvider;
             _formatter = formatter;
             _renderer = renderer;
         }
 
         private void ConnectionTestButton_Click(object sender, RoutedEventArgs e)
         {
+            var selectedProviderName = DatabaseProvidersComboBox.Text;
+            _dataProvider = DependencyResolver.Container.GetAllInstances<IDataProvider>().First(o => o.VisibleName == selectedProviderName);
+
             _dataProvider.Build(ConnectionStringTextBox.Text);
             var result = _dataProvider.TestConnection();
             if (result == true)
@@ -120,9 +129,15 @@ namespace DBQueryTool.Views.Windows
 
         private void DatabaseProvidersComboBox_Loaded(object sender, RoutedEventArgs e)
         {
-            // TODO: Load combobox with IDataProvider implemented classes names/remove hardcoded values
-            DatabaseProvidersComboBox.Items.Add("MSAccess");
-            DatabaseProvidersComboBox.SelectedIndex = 0;
+            foreach (var providerName in _availableProvidersNames)
+            {
+                DatabaseProvidersComboBox.Items.Add(providerName);
+            }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            _availableProvidersNames = DependencyResolver.Container.GetAllInstances<IDataProvider>().Select(o => o.VisibleName).ToList();
         }
     }
 }

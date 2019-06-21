@@ -13,6 +13,8 @@ namespace DBQueryTool.DataAccess.DataProviders
 {
     public class MySqlDataProvider : LoggedClass, IDataProvider
     {
+        public string VisibleName { get; set; } = "MySQL";
+
         private string _queryString;
 
         public bool? TestConnection()

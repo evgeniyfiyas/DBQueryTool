@@ -12,6 +12,8 @@ namespace DBQueryTool.DataAccess.DataProviders
 {
     public class PostgreSqlDataProvider : LoggedClass, IDataProvider
     {
+        public string VisibleName { get; set; } = "PostgreSQL";
+
         private string _queryString;
 
         public bool? TestConnection()

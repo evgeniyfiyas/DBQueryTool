@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ClosedXML.Report;
+using ClosedXML.Report.Utils;
 using DBQueryTool.DataAccess.DataProviders;
 using DBQueryTool.DataAccess.Models;
 using Microsoft.Win32;
@@ -109,20 +110,11 @@ namespace DBQueryTool.Views.Windows
 
         private byte[] ReadFile(string path)
         {
-            byte[] data = null;
-
-            var fileInfo = new FileInfo(path);
-            var numBytes = fileInfo.Length;
-
-            var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
-
-            var br = new BinaryReader(fileStream);
-
-            data = br.ReadBytes((int)numBytes);
-            br.Close();
-            fileStream.Close();
-
-            return data;
+            using (var fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+            using (var br = new BinaryReader(fs))
+            {
+                return br.ReadBytes((int)new FileInfo(path).Length);
+            }
         }
 
         private void WindowBase_Loaded(object sender, RoutedEventArgs e)

@@ -12,6 +12,9 @@ namespace DBQueryTool.Core
         {
             _.For<IFormatter<DataTable>>().Use<MsAccessFormatter>();
             _.For<IDataProvider>().Use<MsAccessDataProvider>();
+            _.For<IDataProvider>().Use<MsSqlServerDataProvider>();
+            _.For<IDataProvider>().Use<MySqlDataProvider>();
+            _.For<IDataProvider>().Use<PostgreSqlDataProvider>();
             _.For<IRenderer>().Use<ExcelRenderer>();
         });
     }
