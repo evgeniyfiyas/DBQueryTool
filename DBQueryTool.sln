@@ -5,13 +5,21 @@ VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQueryTool.Views", "DBQueryTool.Views\DBQueryTool.Views.csproj", "{2A216546-D5C3-4CE8-B2C9-D7069FEE520A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth", "Auth\Auth.csproj", "{F413CE04-8F12-4BE5-9E43-00C6F69149AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBQueryTool.UserService", "DBQueryTool.UserService\DBQueryTool.UserService.csproj", "{F413CE04-8F12-4BE5-9E43-00C6F69149AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQueryTool.Core", "DBQueryTool.Core\DBQueryTool.Core.csproj", "{9E6BC582-DAC5-402C-ACEB-74783D3190D2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQueryTool.Migrations", "DBQueryTool.Migrations\DBQueryTool.Migrations.csproj", "{989F87CC-BEF9-4D8C-8F29-5E8DBFE200DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQueryTool.Utils", "DBQueryTool.Utils\DBQueryTool.Utils.csproj", "{5D94D54C-1490-45DC-AB0F-D6D1B8D75ACE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQueryTool.DependencyResolver", "DBQueryTool.DependencyResolver\DBQueryTool.DependencyResolver.csproj", "{1EBCB853-6932-419D-8443-220245340EB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQueryTool.DataAccess", "DBQueryTool.DataAccess\DBQueryTool.DataAccess.csproj", "{95040539-3C8E-48ED-AA70-3B0A5923161B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQueryTool.ReportProcessor", "DBQueryTool.ReportProcessor\DBQueryTool.ReportProcessor.csproj", "{3498591F-0AC8-47B3-92C9-21E8EAB2CC1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQueryTool.DataAccess.Models", "DBQueryTool.DataAccess.Models\DBQueryTool.DataAccess.Models.csproj", "{ECBC4272-2A4C-4978-988C-B4314EE3BBF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQueryTool.ConnectionProcessor", "DBQueryTool.ConnectionProcessor\DBQueryTool.ConnectionProcessor.csproj", "{28714536-B3B8-4F40-9F8E-4A8D9E77A500}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQueryTool.DataAccess.Service", "DBQueryTool.DataAccess.Service\DBQueryTool.DataAccess.Service.csproj", "{DD22B8EF-4675-43F5-B788-A24AC8DBBC38}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DBQueryTool.Utils", "DBQueryTool.Utils\DBQueryTool.Utils.csproj", "{7E997C0C-3E9C-4EFC-91E8-4E37140C457F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,18 +35,34 @@ Global
 		{F413CE04-8F12-4BE5-9E43-00C6F69149AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F413CE04-8F12-4BE5-9E43-00C6F69149AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F413CE04-8F12-4BE5-9E43-00C6F69149AE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E6BC582-DAC5-402C-ACEB-74783D3190D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E6BC582-DAC5-402C-ACEB-74783D3190D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E6BC582-DAC5-402C-ACEB-74783D3190D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E6BC582-DAC5-402C-ACEB-74783D3190D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5D94D54C-1490-45DC-AB0F-D6D1B8D75ACE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5D94D54C-1490-45DC-AB0F-D6D1B8D75ACE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5D94D54C-1490-45DC-AB0F-D6D1B8D75ACE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5D94D54C-1490-45DC-AB0F-D6D1B8D75ACE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{95040539-3C8E-48ED-AA70-3B0A5923161B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{95040539-3C8E-48ED-AA70-3B0A5923161B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{95040539-3C8E-48ED-AA70-3B0A5923161B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{95040539-3C8E-48ED-AA70-3B0A5923161B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{989F87CC-BEF9-4D8C-8F29-5E8DBFE200DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{989F87CC-BEF9-4D8C-8F29-5E8DBFE200DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{989F87CC-BEF9-4D8C-8F29-5E8DBFE200DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{989F87CC-BEF9-4D8C-8F29-5E8DBFE200DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EBCB853-6932-419D-8443-220245340EB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EBCB853-6932-419D-8443-220245340EB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EBCB853-6932-419D-8443-220245340EB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EBCB853-6932-419D-8443-220245340EB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3498591F-0AC8-47B3-92C9-21E8EAB2CC1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3498591F-0AC8-47B3-92C9-21E8EAB2CC1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3498591F-0AC8-47B3-92C9-21E8EAB2CC1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3498591F-0AC8-47B3-92C9-21E8EAB2CC1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECBC4272-2A4C-4978-988C-B4314EE3BBF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECBC4272-2A4C-4978-988C-B4314EE3BBF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECBC4272-2A4C-4978-988C-B4314EE3BBF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECBC4272-2A4C-4978-988C-B4314EE3BBF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28714536-B3B8-4F40-9F8E-4A8D9E77A500}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28714536-B3B8-4F40-9F8E-4A8D9E77A500}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28714536-B3B8-4F40-9F8E-4A8D9E77A500}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28714536-B3B8-4F40-9F8E-4A8D9E77A500}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD22B8EF-4675-43F5-B788-A24AC8DBBC38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD22B8EF-4675-43F5-B788-A24AC8DBBC38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD22B8EF-4675-43F5-B788-A24AC8DBBC38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD22B8EF-4675-43F5-B788-A24AC8DBBC38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E997C0C-3E9C-4EFC-91E8-4E37140C457F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E997C0C-3E9C-4EFC-91E8-4E37140C457F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E997C0C-3E9C-4EFC-91E8-4E37140C457F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E997C0C-3E9C-4EFC-91E8-4E37140C457F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

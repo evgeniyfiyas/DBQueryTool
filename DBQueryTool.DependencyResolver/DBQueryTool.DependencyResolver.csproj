@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7E997C0C-3E9C-4EFC-91E8-4E37140C457F}</ProjectGuid>
+    <ProjectGuid>{1EBCB853-6932-419D-8443-220245340EB6}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>DBQueryTool.Utils</RootNamespace>
-    <AssemblyName>DBQueryTool.Utils</AssemblyName>
+    <RootNamespace>DBQueryTool.DependencyResolver</RootNamespace>
+    <AssemblyName>DBQueryTool.DependencyResolver</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -40,12 +40,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logger\Logger.cs" />
+    <Compile Include="DependencyResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.6.5\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="StructureMap, Version=4.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StructureMap.4.7.1\lib\net45\StructureMap.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -55,6 +58,24 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DBQueryTool.ConnectionProcessor\DBQueryTool.ConnectionProcessor.csproj">
+      <Project>{28714536-b3b8-4f40-9f8e-4a8d9e77a500}</Project>
+      <Name>DBQueryTool.ConnectionProcessor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBQueryTool.DataAccess.Service\DBQueryTool.DataAccess.Service.csproj">
+      <Project>{dd22b8ef-4675-43f5-b788-a24ac8dbbc38}</Project>
+      <Name>DBQueryTool.DataAccess.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBQueryTool.ReportProcessor\DBQueryTool.ReportProcessor.csproj">
+      <Project>{3498591F-0AC8-47B3-92C9-21E8EAB2CC1D}</Project>
+      <Name>DBQueryTool.ReportProcessor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DBQueryTool.Utils\DBQueryTool.Utils.csproj">
+      <Project>{7e997c0c-3e9c-4efc-91e8-4e37140c457f}</Project>
+      <Name>DBQueryTool.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

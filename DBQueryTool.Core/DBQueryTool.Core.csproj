@@ -103,7 +103,7 @@
       <Name>DBQueryTool.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\DBQueryTool.Utils\DBQueryTool.Utils.csproj">
-      <Project>{5D94D54C-1490-45DC-AB0F-D6D1B8D75ACE}</Project>
+      <Project>{fe35a4ee-6478-4d1f-9ade-bf6ab4be390a}</Project>
       <Name>DBQueryTool.Utils</Name>
     </ProjectReference>
   </ItemGroup>

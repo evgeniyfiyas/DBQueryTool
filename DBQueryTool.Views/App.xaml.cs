@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
-using DBQueryTool.Core;
-using DBQueryTool.Utils;
+using DBQueryTool.DependencyResolver;
 using DBQueryTool.Views.Windows;
 using NLog;
 
@@ -12,7 +11,7 @@ namespace DBQueryTool.Views
     /// </summary>
     public partial class App : Application
     {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private static readonly ILogger Logger = DependencyResolver.DependencyResolver.Container.GetInstance<ILogger>();
 
         public App()
         {
@@ -33,7 +32,7 @@ namespace DBQueryTool.Views
         {
             base.OnStartup(e);
 
-            var loginWindow = DependencyResolver.Container.GetInstance<LoginWindow>();
+            var loginWindow = DependencyResolver.DependencyResolver.Container.GetInstance<LoginWindow>();
             loginWindow.Show();
         }
     }

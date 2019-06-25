@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7E997C0C-3E9C-4EFC-91E8-4E37140C457F}</ProjectGuid>
+    <ProjectGuid>{3498591F-0AC8-47B3-92C9-21E8EAB2CC1D}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>DBQueryTool.Utils</RootNamespace>
-    <AssemblyName>DBQueryTool.Utils</AssemblyName>
+    <RootNamespace>DBQueryTool.ReportProcessor</RootNamespace>
+    <AssemblyName>DBQueryTool.ReportProcessor</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -37,24 +37,21 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logger\Logger.cs" />
+    <Compile Include="Formatters\IFormatter.cs" />
+    <Compile Include="Formatters\MsAccessFormatter.cs" />
+    <Compile Include="Renderers\ExcelRenderer.cs" />
+    <Compile Include="Renderers\IRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.6.5\lib\net45\NLog.dll</HintPath>
+    <Reference Include="ClosedXML.Report">
+      <HintPath>..\packages\ClosedXML.Report.0.1.1.1\lib\net46\ClosedXML.Report.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Xml" />
+    <Reference Include="System.Data.DataSetExtensions" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

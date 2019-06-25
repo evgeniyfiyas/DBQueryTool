@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7E997C0C-3E9C-4EFC-91E8-4E37140C457F}</ProjectGuid>
+    <ProjectGuid>{ECBC4272-2A4C-4978-988C-B4314EE3BBF4}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>DBQueryTool.Utils</RootNamespace>
-    <AssemblyName>DBQueryTool.Utils</AssemblyName>
+    <RootNamespace>DBQueryTool.DataAccess.Models</RootNamespace>
+    <AssemblyName>DBQueryTool.DataAccess.Models</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -37,24 +37,12 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Logger\Logger.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\packages\NLog.4.6.5\lib\net45\NLog.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.IO.Compression" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Xml" />
+    <Compile Include="Report.cs" />
+    <Compile Include="Template.cs" />
+    <Compile Include="TemplateType.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
